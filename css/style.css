@@ -1,0 +1,835 @@
+/* 基础样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, "Microsoft YaHei", sans-serif;
+    background-color: #ffffff;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* 页面顶部横幅 */
+.top-banner {
+    width: 100vw;
+    background: white;
+    padding: 10px 0;
+    position: relative;
+    z-index: 999;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    transition: transform 0.3s ease;
+}
+
+.top-banner.hidden {
+    transform: translateY(-100%);
+}
+
+.banner-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+}
+
+.logo-section img {
+    height: 50px;
+    width: auto;
+    max-width: 120px;
+    object-fit: contain;
+}
+
+.contact-section {
+    display: flex;
+    align-items: center;
+    color: #333;
+    font-weight: bold;
+}
+
+.qq-container {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    /* 避免创建新的堆叠上下文 */
+    z-index: auto;
+    position: static;
+}
+
+.qq-trigger {
+    display: flex;
+    align-items: center;
+}
+
+.qq-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px; /* 企鹅图标与QQ文本之间的间距 */
+    vertical-align: middle; /* 保持垂直居中对齐 */
+}
+
+.qq-dialog {
+    position: fixed;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 12px; /* 圆角 */
+    padding: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 2147483647 !important; /* 使用最大可能的z-index值，确保显示在最上层 */
+    display: none;
+    width: 200px;
+    height: 200px; /* 使对话框成为正方形 */
+    text-align: center;
+    /* 防止被其他元素遮挡 */
+    transform: translateZ(0);
+    will-change: transform;
+    /* 强制创建新的层叠上下文 */
+    isolation: isolate;
+    /* 确保元素在自己的渲染层 */
+    backface-visibility: hidden;
+    perspective: 1000px;
+    /* 确保相对于视口定位 */
+    top: 0;
+    left: 0;
+    /* 确保完全脱离文档流 */
+    pointer-events: auto;
+    /* 确保内容居中 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.qq-dialog img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* 确保图片完整显示且保持比例 */
+    border-radius: 8px; /* 图片也使用轻微圆角 */
+}
+
+/* 三列布局样式 */
+.three-column-container {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    align-items: stretch;
+    height: 600px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.left-column, .middle-column, .right-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border: 1px solid #eee; /* 整体边框 */
+    border-radius: 8px; /* 整体圆角 */
+    overflow: hidden; /* 确保内部内容不超出边框 */
+    min-height: 0; /* 允许flex项目缩小 */
+}
+
+/* 左侧区域样式 */
+.left-top, .left-middle, .left-bottom {
+    display: flex;
+    gap: 15px;
+    flex: 1;
+    height: 33.33%;
+    min-height: 0; /* 允许flex项目缩小到其内容以下 */
+}
+
+.left-top-left, .left-top-right, 
+.left-middle-left, .left-middle-right,
+.left-bottom-left, .left-bottom-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    background: white;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.left-top-left img, .left-top-right img,
+.left-middle-left img, .left-middle-right img,
+.left-bottom-left img, .left-bottom-right img {
+    width: 100%;
+    max-height: 120px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    height: auto;
+}
+
+/* 中间区域样式 */
+.middle-top, .middle-middle, .middle-bottom {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #eee;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0; /* 允许flex项目缩小到其内容以下 */
+    overflow: hidden; /* 防止内容溢出 */
+}
+
+.middle-top ul, .middle-middle ul, .middle-bottom ul {
+    list-style: disc; /* 使用小黑点作为列表标记 */
+    padding-left: 20px;
+    margin: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* 从顶部开始排列内容 */
+    align-items: flex-start; /* 左对齐内容 */
+    overflow-y: auto; /* 控制垂直溢出 */
+    min-height: 0; /* 确保flex项目可以缩小 */
+}
+
+.middle-top li, .middle-middle li, .middle-bottom li {
+    padding: 5px 0;
+    flex: 0 0 auto;
+    word-wrap: break-word; /* 确保长文本换行 */
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+/* 移除了底部边框相关样式 */
+
+.middle-top li a, .middle-middle li a, .middle-bottom li a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    transition: color 0.3s;
+}
+
+.middle-top li a:hover, .middle-middle li a:hover, .middle-bottom li a:hover {
+    color: #4a90e2;
+}
+
+/* 右侧区域样式 */
+.right-top {
+    display: flex;
+    align-items: center;
+    background: white;
+    padding: 0 15px; /* 调整内边距以适应固定高度 */
+    flex: 0 0 50px; /* 固定高度50px */
+    width: 100%;
+}
+
+.red-line {
+    display: inline-block;
+    width: 4px;
+    height: 20px;
+    background: red;
+    margin-right: 10px;
+}
+
+.exposure-title {
+    flex: 1;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.more-link {
+    color: #4a90e2;
+    cursor: pointer;
+}
+
+.right-middle {
+    background: url('https://picsum.photos/600/160?random=exposure') center/cover; /* 使用图片作为背景 */
+    padding: 0; /* 移除内边距 */
+    text-align: center;
+    flex: 0 0 160px; /* 固定高度160px，不允许伸缩 */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* 文本在底部 */
+    align-items: stretch; /* 确保子元素拉伸以适应容器 */
+    min-height: 0; /* 允许flex项目缩小到其内容以下 */
+    position: relative; /* 为内容定位做准备 */
+    overflow: hidden; /* 确保内容不溢出 */
+    border-radius: 8px; /* 添加圆角 */
+}
+
+.right-middle img {
+    display: none; /* 隐藏HTML图片，因为背景已在CSS中设置 */
+}
+
+.right-middle .content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center; /* 文本居中 */
+    padding: 10px 16px; /* 保留左右间距，确保文字不在图片边缘 */
+}
+
+.right-middle p {
+    color: white;
+    margin: 0;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+    z-index: 1; /* 确保文字在前景 */
+    font-weight: bold; /* 让底部文字更突出 */
+}
+
+.right-bottom {
+    background: white;
+    padding: 15px;
+    flex: 1; /* 占用剩余空间 */
+    display: flex;
+    flex-direction: column;
+    min-height: 0; /* 允许flex项目缩小到其内容以下 */
+}
+
+.right-bottom ol {
+    list-style: decimal;
+    padding-left: 20px;
+    margin: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto; /* 允许滚动以显示全部列表项 */
+}
+
+.right-bottom li {
+    margin-bottom: 8px;
+    line-height: 1.5;
+    flex: 0 0 auto;
+}
+
+/* 通用图片样式 */
+.left-column img {
+    width: 100%;
+    max-height: 120px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 8px;
+}
+
+.right-column img {
+    width: 100%;
+    max-height: 150px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 5px; /* 减小图片下方间距 */
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .three-column-container {
+        flex-direction: column;
+    }
+    
+    .left-top, .left-middle, .left-bottom {
+        flex-direction: column;
+    }
+}
+
+/* 轮播图样式 */
+.carousel-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto 20px;
+    padding: 0 15px;
+    overflow: hidden;
+}
+
+.carousel {
+    position: relative;
+    width: 100%;
+    height: 450px; /* 固定高度，放大1.5倍 */
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.carousel-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.carousel-item.active {
+    opacity: 1;
+}
+
+.carousel-bg {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+.carousel-title {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.7));
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* 头部样式 - 导航栏 */
+.header {
+    width: 100vw;
+    background-color: #D4B98C;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    transition: top 0.3s ease;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.navbar-nav {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 15px 0;
+    width: 100%;
+}
+
+.navbar-nav li {
+    flex: 1;
+    text-align: center;
+}
+
+.navbar-nav li a {
+    display: block;
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.navbar-nav li a:hover {
+    background-color: #bda37d;
+}
+
+.clear {
+    clear: both;
+}
+
+/* 主内容区域 */
+.main-content {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.section {
+    background: white;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.section-header {
+    background: linear-gradient(135deg, #4a90e2, #3a7bc8);
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.section-title {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.section-more {
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    transition: opacity 0.3s;
+}
+
+.section-more:hover {
+    opacity: 0.8;
+}
+
+.section-content {
+    padding: 20px;
+}
+
+.article-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.article-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.article-list li:last-child {
+    border-bottom: none;
+}
+
+.article-link {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    display: block;
+    transition: color 0.3s;
+    position: relative;
+    padding-left: 15px;
+}
+
+.article-link:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #4a90e2;
+}
+
+.article-link:hover {
+    color: #4a90e2;
+}
+
+/* 分类网格 */
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.category-item {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 1px solid #e9ecef;
+}
+
+.category-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    background: #fff;
+}
+
+.category-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #4a90e2;
+    font-size: 16px;
+}
+
+.category-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.category-links li {
+    margin-bottom: 8px;
+}
+
+.category-links a {
+    text-decoration: none;
+    color: #666;
+    font-size: 14px;
+    display: block;
+    transition: color 0.3s;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.category-links a:hover {
+    color: #4a90e2;
+    background-color: #f0f8ff;
+}
+
+/* 页脚样式 */
+.footer {
+    background: #333;
+    color: white;
+    padding: 30px 0;
+    margin-top: 40px;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.footer h3 {
+    color: white;
+    margin-top: 0;
+}
+
+.friend-title h3 {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.friend-desc {
+    color: #aaa;
+    font-size: 14px;
+}
+
+.friend-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.friend-nav li {
+    list-style: none;
+    margin: 0;
+}
+
+.friend-nav a {
+    color: #ccc;
+    text-decoration: none;
+    padding: 6px 12px;
+    border: 1px solid #555;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+    font-size: 13px;
+}
+
+.friend-nav a:hover {
+    background-color: #555;
+    color: white;
+}
+
+/* 底部版权区域 */
+.hzw_footer {
+    background: #222;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.hzw_footer02 h3 {
+    color: white;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.hzw_footer02 p {
+    color: #aaa;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.hzw_footer03 {
+    text-align: center;
+    margin-top: 15px;
+    color: #aaa;
+    font-size: 12px;
+}
+
+.hzw_footer03 a {
+    color: #aaa;
+    text-decoration: none;
+}
+
+.hzw_footer03 a:hover {
+    text-decoration: underline;
+}
+
+/* 返回顶部按钮 */
+.back-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #4a90e2, #3a7bc8);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    text-decoration: none;
+    z-index: 999;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.back-top:hover {
+    background: linear-gradient(135deg, #3a7bc8, #2a6bb8);
+    transform: scale(1.1);
+}
+
+.back-top .icon {
+    font-size: 18px;
+}
+
+/* 响应式设计 */
+@media (max-width: 992px) {
+    .container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .nav {
+        margin-top: 15px;
+    }
+    
+    .navbar-nav {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .navbar-nav li {
+        margin: 5px;
+    }
+    
+    .auth-buttons {
+        justify-content: center;
+        margin-top: 10px;
+    }
+    
+    .category-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar-nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .navbar-nav li {
+        margin: 5px 0;
+        width: 100%;
+    }
+    
+    .navbar-nav li a {
+        display: block;
+        padding: 10px;
+    }
+    
+    .auth-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .login-btn, .register-btn {
+        margin: 5px 0;
+        width: 100%;
+    }
+    
+    .main-content {
+        padding: 0 10px;
+    }
+    
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .section-more {
+        margin-top: 10px;
+    }
+    
+    .category-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 10px;
+    }
+    
+    .friend-nav {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .category-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .section-content {
+        padding: 15px;
+    }
+    
+    .article-link {
+        font-size: 14px;
+    }
+}
+
+/* 动画效果 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.section {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
