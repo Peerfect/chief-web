@@ -473,9 +473,8 @@ body {
 .divider-line {
     display: flex;
     width: 100%;
-    max-width: 1200px;
-    margin: 20px auto 0;
-    padding: 0 20px; /* 添加左右padding以与three-column-container对齐 */
+    margin: 20px 0 0;
+    padding: 0 20px; /* 添加与容器一致的padding */
     height: 2px; /* 使用较高的高度作为基准 */
     position: relative;
 }
@@ -557,6 +556,232 @@ body {
     color: #333;
     line-height: 1.4;
     text-align: left; /* 设置文字左对齐 */
+}
+
+/* 三栏部分样式 - 贵金属、黄金、白银 */
+.triple-section {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 20px 0 20px; /* 上边距增加10px */
+    background-color: #fff; /* 白色背景 */
+    display: flex;
+    gap: 26px;
+    align-items: flex-start; /* 顶部对齐 */
+}
+
+.triple-item {
+    display: flex;
+    flex-direction: column;
+    padding: 0; /* 子元素不再设置padding */
+}
+
+/* 新的贵金属和黄金专用分割线样式，去除padding影响 */
+.precious-metal-divider {
+    display: flex;
+    width: 100%;
+    margin: 0; /* 移除所有边距 */
+    height: 2px;
+}
+
+.precious-metal-divider-red {
+    width: 40px; /* 左侧红色部分宽度40px */
+    height: 2px; /* 红色部分高度2px */
+    background-color: #cc0000; /* 红色 */
+}
+
+.precious-metal-divider-gray {
+    flex: 1; /* 占据剩余空间 */
+    height: 1px; /* 灰色部分高度1px */
+    background-color: #e0e0e0; /* 灰色 */
+    margin-top: 1px; /* 向下偏移1px以与红色部分底部对齐 */
+}
+
+.gold-content-top, .gold-content-bottom {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 0 0 10px 0; /* 移除顶部padding，保留底部padding */
+    border-bottom: none;
+    width: 100%; /* 确保占满宽度 */
+}
+
+.gold-content-bottom {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 0; /* 移除所有padding */
+    border-bottom: none;
+    width: 100%; /* 确保占满宽度 */
+}
+
+/* 移除gold-content-top的底部外边距，使两个div紧挨在一起 */
+.gold-content-top {
+    margin-bottom: 0; /* 移除之前添加的10px底部外边距 */
+}
+
+.middle-item .info-list {
+    flex: 1;
+}
+
+.left-item {
+    flex: 2.3; /* 权重2.3 */
+}
+
+.middle-item {
+    flex: 2; /* 权重2 */
+}
+
+.right-item {
+    flex: 2; /* 权重2 */
+    border: 1px solid #ddd; /* 添加边框 */
+    border-radius: 8px; /* 添加圆角使外观更美观 */
+}
+
+/* 为右侧div中的无序列表专门设置样式，确保圆点显示 */
+.right-item .info-list {
+    list-style: disc !important;
+    padding-left: 20px !important;
+    margin: 0 !important;
+    text-align: left;
+}
+
+.right-item .info-list li {
+    list-style: disc !important; /* 确保列表项也有圆点 */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 8px 0;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.5;
+    text-align: left;
+}
+
+/* 银色分割线占位符 - 与贵金属和黄金的分割线高度一致 */
+.silver-placeholder-divider {
+    height: 2px;
+    width: 100%;
+    visibility: hidden; /* 隐藏但占用空间 */
+}
+
+.silver-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    height: 45px;
+    background-color: #f0f0f0;
+    width: 100%;
+    margin: 0;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px 15px 20px; /* 只保留底部和左右内边距，移除顶部内边距 */
+    background-color: white !important; /* 白色背景 */
+    width: calc(100% + 40px); /* 超出容器宽度以抵消容器的padding */
+    margin: 0 -20px; /* 使用负边距抵消容器的padding */
+    height: 45px; /* 设置固定高度45px */
+}
+
+.section-title {
+    font-size: 20px; /* 减小字体大小 */
+    font-weight: bold;
+    color: #333;
+}
+
+.section-links {
+    display: flex;
+    gap: 15px;
+}
+
+.section-links span {
+    color: #666;
+    cursor: pointer;
+    transition: color 0.3s;
+    font-size: 14px; /* 减小字体大小 */
+}
+
+.section-links span:hover {
+    color: #4a90e2;
+}
+
+.section-more {
+    color: #cc0000; /* 红色 */
+    cursor: pointer;
+    transition: color 0.3s;
+    font-size: 14px;
+}
+
+.section-more:hover {
+    color: #4a90e2;
+}
+
+.image-text-container {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.image-text-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.image-text-item img {
+    width: 100%;
+    max-height: 120px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 8px;
+}
+
+.image-text {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.4;
+    text-align: left;
+}
+
+/* 重置info-list的全局样式，确保右侧列表能显示圆点 */
+.info-list {
+    list-style: disc; /* 恢复默认的小圆点标记 */
+    padding: 0 0 0 20px; /* 添加左侧内边距以容纳小圆点 */
+    margin: 0;
+    width: 100%; /* 确保占满宽度 */
+}
+
+/* 左侧div中底部的无序列表字号加1 */
+.left-item .info-list li {
+    font-size: 15px; /* 从默认的14px增加到15px */
+}
+
+/* 右侧div中的无序列表文字单行显示，显示不下显示省略号 */
+.right-item .info-list {
+    list-style: disc;
+    padding: 0 0 0 20px;
+    text-align: left;
+}
+
+.right-item .info-list li {
+    white-space: nowrap; /* 不换行 */
+    overflow: hidden; /* 超出隐藏 */
+    text-overflow: ellipsis; /* 显示省略号 */
+    text-align: left;
+    list-style: disc; /* 确保列表项也有圆点 */
+}
+
+.info-list li:last-child {
+    border-bottom: none; /* 确保最后一个元素也没有底部边框 */
+}
+
+.info-list li:first-child {
+    font-weight: bold;
+    color: #000;
 }
 
 /* 响应式设计 */
@@ -688,6 +913,14 @@ body {
 }
 
 .section-header {
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* 旧版section header样式，保留用于兼容 */
+.section .section-header {
     background: linear-gradient(135deg, #4a90e2, #3a7bc8);
     color: white;
     padding: 15px 20px;
