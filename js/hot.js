@@ -5,7 +5,7 @@ const localImages = {
     articles: [
         "./img/imgFiles/chief_1.jpg",
         "./img/imgFiles/chief_2.jpg", 
-        "./img/imgFiles/chief_3.jpg",
+        "./img/imgFiles/chief_9.jpg",
         "./img/imgFiles/chief_4.jpg",
         "./img/imgFiles/chief_5.jpg",
         "./img/imgFiles/chief_6.jpg"

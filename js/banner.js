@@ -3,29 +3,17 @@
 // 模拟新闻数据源
 const newsData = [
     {
-        title: "全球金融市场迎来新一轮波动，投资者需谨慎应对",
-        image: "https://picsum.photos/1200/450?random=1"
+        title: "国际金价一度突破4600美元大关 ，后市怎么走？",
+        image: "https://n.sinaimg.cn/finance/crawl/45/w550h295/20260112/9386-c9d8d8f65778938853eb51fff1bdef83.png"
     },
     {
-        title: "数字货币监管政策出台，行业迎来规范化发展",
-        image: "https://picsum.photos/1200/450?random=2"
+        title: "黄金，历史新纪录！有色ETF华宝（159876）量价齐升，续刷上市新高！近10日狂揽3.31亿元！",
+        image: "https://n.sinaimg.cn/finance/crawl/784/w550h234/20260112/8a18-6cd8755a0a82e3a91a8e3fdee0286f98.png"
     },
     {
-        title: "新兴经济体增长势头强劲，国际贸易格局生变",
-        image: "https://picsum.photos/1200/450?random=3"
+        title: "【点石成金】锡：高位加速，警惕价量波动",
+        image: "https://image.sinajs.cn/newchart/v5/png/min/futures/ndaily/SN0.png"
     },
-    {
-        title: "央行货币政策调整预期升温，市场利率面临变化",
-        image: "https://picsum.photos/1200/450?random=4"
-    },
-    {
-        title: "科技股表现抢眼，人工智能板块持续走强",
-        image: "https://picsum.photos/1200/450?random=5"
-    },
-    {
-        title: "大宗商品价格震荡，供应链问题仍待解决",
-        image: "https://picsum.photos/1200/450?random=6"
-    }
 ];
 
 // 轮播图功能

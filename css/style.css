@@ -122,12 +122,10 @@ body {
     width: 100%;
     max-width: 1200px;
     margin: 20px auto;
-    padding: 20px;
+    padding: 20px; /* 恢复完整的内边距 */
     align-items: stretch;
-    height: 600px;
+    height: 700px; /* 增加高度100px */
     background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .left-column, .middle-column, .right-column {
@@ -452,22 +450,172 @@ body {
 /* 侧边固定图片样式 */
 .side-image {
     position: fixed;
-    top: 180px; /* 上方间距 */
-    height: calc(100vh - 360px); /* 屏幕高度减去上下间距 */
-    width: calc((100vw - 1200px) / 4); /* 剩余宽度的一半的一半（即原来宽度的一半）*/
+    top: 180px; /* 顶部间距180px */
+    height: calc(100vh - 360px); /* 屏幕高度减去上下间距，现在是180px+180px=360px */
+    width: calc((100vw - 1200px) / 2 - 200px); /* 动态计算宽度：(屏幕宽度 - main-content宽度) / 2 - 200px */
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 998; /* 确保在大部分元素下方，但高于背景 */
     overflow: hidden;
+    border-radius: 16px; /* 添加16px圆角 */
 }
 
 .side-image.left {
-    left: calc((100vw - 1200px) / 8); /* 将左侧图片向右移动，实现居中效果 */
+    left: 100px; /* 左侧图片距离屏幕左边100px，这样距离main-content左边也是100px */
 }
 
 .side-image.right {
-    right: calc((100vw - 1200px) / 8); /* 将右侧图片向左移动，实现居中效果 */
+    right: 100px; /* 右侧图片距离屏幕右边100px */
+}
+
+/* 横线样式 - 左侧红色部分和右侧灰色部分 */
+.divider-line {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px auto 0;
+    padding: 0 20px; /* 添加左右padding以与three-column-container对齐 */
+    height: 2px; /* 使用较高的高度作为基准 */
+    position: relative;
+}
+
+.divider-red {
+    width: 40px; /* 左侧红色部分宽度40px */
+    height: 2px; /* 红色部分高度2px */
+    background-color: #cc0000; /* 稍微淡一点的红色 */
+}
+
+.divider-gray {
+    flex: 1; /* 占据剩余空间 */
+    height: 1px; /* 灰色部分高度1px */
+    background-color: #e0e0e0; /* 更淡一点的灰色 */
+    margin-top: 1px; /* 向下偏移1px以与红色部分底部对齐 */
+}
+
+/* 期货部分样式 */
+.futures-section {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px; /* 添加左右padding以与three-column-container对齐 */
+    background-color: #fff; /* 白色背景 */
+}
+
+.futures-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0; /* 移除左右padding，因为futures-section已有 */
+}
+
+.futures-title {
+    font-size: 20px; /* 减小字体大小 */
+    font-weight: bold;
+    color: #333;
+}
+
+.futures-links {
+    display: flex;
+    gap: 15px;
+}
+
+.futures-links span {
+    color: #666;
+    cursor: pointer;
+    transition: color 0.3s;
+    font-size: 14px; /* 减小字体大小 */
+}
+
+.futures-links span:hover {
+    color: #4a90e2;
+}
+
+.futures-content {
+    display: flex;
+    gap: 15px;
+    justify-content: space-between;
+    padding: 0 0 20px; /* 移除左右padding，因为futures-section已有 */
+}
+
+.futures-item {
+    flex: 1;
+    border-radius: 8px; /* 8px圆角 */
+    overflow: hidden;
+}
+
+.futures-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.futures-text {
+    background-color: #f8f9fa; /* 浅灰色背景 */
+    padding: 10px 5px; /* 左右间距5px */
+    font-size: 14px;
+    color: #333;
+    line-height: 1.4;
+    text-align: left; /* 设置文字左对齐 */
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .futures-section {
+        padding: 10px; /* 在小屏幕上使用较小的内边距 */
+    }
+    
+    .futures-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .futures-links {
+        align-self: flex-end;
+    }
+    
+    .futures-content {
+        flex-wrap: wrap;
+    }
+    
+    .futures-item {
+        min-width: calc(50% - 7.5px);
+        margin-bottom: 15px;
+    }
+    
+    .futures-item:nth-child(2n) {
+        margin-left: 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    .futures-content {
+        flex-direction: column;
+    }
+    
+    .futures-item {
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .futures-links {
+        flex-direction: column;
+        align-self: flex-start;
+    }
+    
+    .futures-item {
+        min-width: 100%;
+        margin-left: 0 !important;
+    }
+}
+
+/* 在小屏幕上隐藏侧边图片 */
+@media (max-width: 1400px) {
+    .side-image {
+        display: none;
+    }
 }
 
 .side-image img {
@@ -486,6 +634,8 @@ body {
     flex-direction: column;
     position: relative; /* 创建一个新的层叠上下文 */
     z-index: 999; /* 确保主内容在侧边图片上方 */
+    min-height: 100vh; /* 确保有足够的高度容纳侧边图片 */
+    overflow: visible; /* 确保侧边图片可见 */
 }
 
 /* 使用padding代替margin，配合box-sizing */
